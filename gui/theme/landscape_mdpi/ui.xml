@@ -6,7 +6,7 @@
 		<title>Backup Naowz</title>
 		<description>Default basic theme</description>
 		<preview>preview.png</preview>
-		<themeversion>{themeversion}</themeversion>
+		<themeversion>5</themeversion>
 	</details>
 
 	<include>
@@ -14,14 +14,14 @@
 	</include>
 
 	<resources>
-		<font name="font_l" filename="RobotoCondensed-Regular.ttf" size="18"/>
-		<font name="font_m" filename="RobotoCondensed-Regular.ttf" size="14"/>
-		<font name="font_s" filename="RobotoCondensed-Regular.ttf" size="12"/>
-		<font name="fixed" filename="DroidSansMono.ttf" size="12"/>
+		<font name="font_l" filename="RobotoCondensed-Heavy.ttf" size="22"/>
+		<font name="font_m" filename="RobotoCondensed-Heavy.ttf" size="17"/>
+		<font name="font_s" filename="RobotoCondensed-Heavy.ttf" size="14"/>
+		<font name="fixed" filename="LiberationMono-Bold.ttf" size="13"/>
 
-		<font name="keylabel" filename="RobotoCondensed-Regular.ttf" size="21"/>
-		<font name="keylabel-small" filename="RobotoCondensed-Regular.ttf" size="18"/>
-		<font name="keylabel-longpress" filename="RobotoCondensed-Regular.ttf" size="11"/>
+		<font name="keylabel" filename="RobotoCondensed-Heavy.ttf" size="21"/>
+		<font name="keylabel-small" filename="RobotoCondensed-Heavy.ttf" size="18"/>
+		<font name="keylabel-longpress" filename="RobotoCondensed-Heavy.ttf" size="12"/>
 
 		<image name="logo" filename="logo" retainaspect="1"/>
 		<image name="main_button" filename="main_button"/>
@@ -51,6 +51,7 @@
 		<image name="slider_used" filename="slider_used"/>
 		<image name="slider_touch" filename="slider_touch"/>
 		<image name="handle" filename="handle"/>
+		<image name="blank_icon" filename="blank_icon" retainaspect="1"/>
 		<image name="cursor" filename="cursor" retainaspect="1"/>
 
 		<image name="backspace" filename="backspace" retainaspect="1"/>
@@ -122,7 +123,7 @@
 		<variable name="status_topalign_header_y" value="0"/>
 		<variable name="status_centeralign_header_y" value="2"/>
 		<variable name="status_bottomalign_header_y" value="4"/>
-		<variable name="row1_header_y" value="{statusicons_align}"/>
+		<variable name="row1_header_y" value="%status_topalign_header_y%"/>
 		<variable name="row2_header_y" value="20"/>
 		<variable name="row3_header_y" value="24"/>
 		<variable name="row4_header_y" value="52"/>
@@ -172,10 +173,10 @@
 		<variable name="navbar_y" value="440"/>
 		<variable name="navbar_btn_y" value="460"/>
 		<variable name="keyboard_y" value="248"/>
-		<variable name="background_color" value="#1A1A1A"/>
-		<variable name="accent_color" value="#0090CA"/>
-		<variable name="text_color" value="#EEEEEE"/>
-		<variable name="text_button_color" value="#EEEEEE"/>
+		<variable name="background_color" value="#FFFFFF"/>
+		<variable name="accent_color" value="#000000"/>
+		<variable name="text_color" value="#000000"/>
+		<variable name="text_button_color" value="#000000"/>
 		<variable name="text_success_color" value="#76FF03"/>
 		<variable name="text_fail_color" value="#FF0101"/>
 		<variable name="highlight_color" value="#1A1A1A80"/>
@@ -184,9 +185,11 @@
 		<variable name="semi_transparent" value="#00000099"/>
 		<variable name="warning" value="#F8F8A0"/>
 		<variable name="error" value="#FF0101"/>
-		<variable name="highlight" value="#0090CA"/>
-		<variable name="fileselector_linecolor" value="#555555"/>
-		<variable name="fileselector_highlight_color" value="#555555"/>
+		<variable name="highlight" value="#000000"/>
+		<variable name="button_text_color" value="#000000"/>
+		<variable name="fileselector_highlight_font_color" value="#000000"/>
+		<variable name="fileselector_linecolor" value="#888888"/>
+		<variable name="fileselector_highlight_color" value="#C8C8C8"/>
 		<variable name="fileselector_separatorheight" value="1"/>
 		<variable name="fileselector_spacing" value="0"/>
 		<variable name="fileselector_install_height" value="333"/>
@@ -229,10 +232,10 @@
 		<variable name="pattern_dot_dia" value="12"/>
 		<variable name="pattern_line_w" value="4"/>
 		<variable name="pattern_size" value="252"/>
-		<variable name="tw_clock_12_pos_x" value="{clock_12_pos}"/>
-		<variable name="tw_clock_24_pos_x" value="{clock_24_pos}"/>
-		<variable name="tw_cpu_pos_x" value="{cpu_pos}"/>
-		<variable name="tw_battery_pos_x" value="{battery_pos}"/>
+		<variable name="tw_clock_12_pos_x" value="0"/>
+		<variable name="tw_clock_24_pos_x" value="0"/>
+		<variable name="tw_cpu_pos_x" value="0"/>
+		<variable name="tw_battery_pos_x" value="0"/>
 	</variables>
 
 	<mousecursor>
@@ -245,8 +248,12 @@
 		<template name="page">
 			<background color="%background_color%"/>
 
-			<fill color="%accent_color%">
+			<fill color="#FFFFFF">
 				<placement x="0" y="0" w="%screen_width%" h="%header_height%"/>
+			</fill>
+
+			<fill color="#999999">
+				<placement x="0" y="%header_height%" w="%screen_width%" h="2"/>
 			</fill>
 
 			<image>
@@ -262,7 +269,7 @@
 				<action function="key">home</action>
 			</button>
 
-			<fill color="#00000030">
+			<fill color="#00000014">
 				<condition var1="tw_simulate_actions" var2="0"/>
 				<placement x="0" y="0" w="%screen_width%" h="%status_height%"/>
 			</fill>
@@ -356,9 +363,14 @@
 
 			<!-- Custom position for status bar items if defined END -->
 
-			<fill color="#000000">
+			<fill color="#FFFFFF">
 				<condition var1="tw_busy" var2="0"/>
 				<placement x="0" y="%navbar_y%" w="%screen_width%" h="%navbar_height%"/>
+			</fill>
+
+			<fill color="#999999">
+				<condition var1="tw_busy" var2="0"/>
+				<placement x="0" y="%navbar_y%" w="%screen_width%" h="2"/>
 			</fill>
 
 			<button>
@@ -673,10 +685,10 @@
 				<condition var1="tw_hide_kb" op="=" var2="0"/>
 				<placement x="0" y="%keyboard_y%" w="800" h="192"/>
 				<keymargin x="4" y="4"/>
-				<background color="#111111"/>
-				<key-alphanumeric color="#111111" font="keylabel" textcolor="#EEEEEE"/>
-				<key-other color="#111111" font="keylabel-small" textcolor="#5b5b5bff"/>
-				<longpress font="keylabel-longpress" textcolor="#5b5b5bff" x="14" y="2"/>
+				<background color="#FFFFFF"/>
+				<key-alphanumeric color="#FFFFFF" font="keylabel" textcolor="#000000"/>
+				<key-other color="#FFFFFF" font="keylabel-small" textcolor="#000000"/>
+				<longpress font="keylabel-longpress" textcolor="#000000" x="14" y="2"/>
 				<keylabel key="0:c:8" text="Bksp" resource="backspace_terminal"/>
 				<keylabel key="0:action" text="Enter" resource="enter_terminal"/>
 				<keylabel key=" " text="Space" resource="space_terminal"/>
@@ -689,7 +701,7 @@
 				<keylabel key="0:k:106" text="&gt;" resource="kb_arrow_right"/>
 				<highlight color="%highlight_color%"/>
 				<capshighlight color="%highlight_color%"/>
-				<ctrlhighlight color="#0090CA80"/>
+				<ctrlhighlight color="#00000080"/>
 				<layout1>
 					<keysize height="48" width="68"/>
 					<row1 key01="60:c:27" long01=":c:3" key02="q" long02="1" key03="w" long03="2" key04="e" long04="3" key05="r" long05="4" key06="t" long06="5" key07="y" long07="6" key08="u" long08="7" key09="i" long09="8" key10="o" long10="9" key11="p" long11="0" key12="60:k:103"/>
@@ -733,10 +745,10 @@
 			<keyboard>
 				<placement x="0" y="%keyboard_y%" w="800" h="192"/>
 				<keymargin x="4" y="4"/>
-				<background color="#111111"/>
-				<key-alphanumeric color="#111111" font="keylabel" textcolor="#EEEEEE"/>
-				<key-other color="#111111" font="keylabel-small" textcolor="#5b5b5bff"/>
-				<longpress font="keylabel-longpress" textcolor="#5b5b5bff" x="14" y="2"/>
+				<background color="#FFFFFF"/>
+				<key-alphanumeric color="#FFFFFF" font="keylabel" textcolor="#000000"/>
+				<key-other color="#FFFFFF" font="keylabel-small" textcolor="#000000"/>
+				<longpress font="keylabel-longpress" textcolor="#000000" x="14" y="2"/>
 				<keylabel key="0:c:8" text="Bksp" resource="backspace"/>
 				<keylabel key="0:action" text="Enter" resource="enter"/>
 				<keylabel key=" " text="Space" resource="space"/>
@@ -785,10 +797,10 @@
 			<keyboard>
 				<placement x="0" y="%keyboard_y%" w="800" h="192"/>
 				<keymargin x="4" y="4"/>
-				<background color="#111111"/>
-				<key-alphanumeric color="#111111" font="keylabel" textcolor="#EEEEEE"/>
-				<key-other color="#111111" font="keylabel-small" textcolor="#5b5b5bff"/>
-				<longpress font="keylabel-longpress" textcolor="#5b5b5bff" x="14" y="2"/>
+				<background color="#FFFFFF"/>
+				<key-alphanumeric color="#FFFFFF" font="keylabel" textcolor="#000000"/>
+				<key-other color="#FFFFFF" font="keylabel-small" textcolor="#000000"/>
+				<longpress font="keylabel-longpress" textcolor="#000000" x="14" y="2"/>
 				<keylabel key="0:c:8" text="Bksp" resource="backspace"/>
 				<keylabel key="0:action" text="Enter" resource="enter"/>
 				<keylabel key=" " text="Space" resource="space"/>
